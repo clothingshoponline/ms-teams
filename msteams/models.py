@@ -17,6 +17,5 @@ class Channel:
     def __init__(self, team_id: str, channel_id: str, 
                  bearer: str):
         """Initialize a Channel."""
-        self._team_id: team_id
-        self._channel_id = channel_id
+        self._endpoint = f'https://graph.microsoft.com/v1.0/teams/{team_id}/channels/{channel_id}/'
         self._bearer = bearer
