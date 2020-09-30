@@ -1,3 +1,5 @@
+from collections import namedtuple
+
 import pymsteams
 import requests
 
@@ -11,7 +13,10 @@ def send_text(message: str, title: str, webhook: str) -> None:
     ms_message.send()
 
 
-
+Message = namedtuple('Message', ['id', 'parent_id', 
+                                 'sender', 'sender_id', 
+                                 'last_modified', 
+                                 'subject', 'body'])
 
 class Channel:
     def __init__(self, team_id: str, channel_id: str, 
