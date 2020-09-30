@@ -1,5 +1,5 @@
 import pymsteams
-
+import requests
 
 
 def send_text(message: str, title: str, webhook: str) -> None:
@@ -17,5 +17,12 @@ class Channel:
     def __init__(self, team_id: str, channel_id: str, 
                  bearer: str):
         """Initialize a Channel."""
-        self._endpoint = f'https://graph.microsoft.com/v1.0/teams/{team_id}/channels/{channel_id}/'
-        self._bearer = bearer
+        self._endpoint = f'https://graph.microsoft.com/v1.0/teams/{team_id}/channels/{channel_id}'
+        self._headers = {'Authorization': 'Bearer ' + bearer}
+
+    def post(self, message: str) -> None:
+        """Send text message."""
+        payload = {'body': {'content': f'<pre>\n{message}\n</pre>'}}
+        requests.post(self._endpoint + '/messages', 
+                      headers=self._headers, 
+                      json=payload}
