@@ -25,4 +25,4 @@ class Channel:
         payload = {'body': {'content': f'<pre>\n{message}\n</pre>'}}
         requests.post(self._endpoint + '/messages', 
                       headers=self._headers, 
-                      json=payload}
+                      json=payload)
